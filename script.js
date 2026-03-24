@@ -113,7 +113,7 @@ window.onload = function(){
         // Sous-titre
         ctx.font = Math.floor(blockSize * 0.7) + "px sans-serif";
         ctx.fillStyle = "rgba(255,255,255,0.5)";
-        ctx.fillText("Espace ou tap pour rejouer", cx, cy + blockSize * 1.6);
+        ctx.fillText("Espace ou bouton Rejouer", cx, cy + blockSize * 1.6);
 
         ctx.restore();
     }
@@ -296,6 +296,7 @@ window.onload = function(){
     document.getElementById('btn-down').addEventListener('click',  function(){ snakee.setDirection("down"); });
     document.getElementById('btn-left').addEventListener('click',  function(){ snakee.setDirection("left"); });
     document.getElementById('btn-right').addEventListener('click', function(){ snakee.setDirection("right"); });
+    document.getElementById('btn-restart').addEventListener('click', function(){ restart(); });
 
     // --- Swipe tactile ---
     var touchStartX = 0, touchStartY = 0, touchOnDpad = false;
@@ -307,11 +308,11 @@ window.onload = function(){
     }, { passive: true });
 
     document.addEventListener('touchend', function(e){
-        if(touchOnDpad) return; // ignorer les touches sur le d-pad
+        if(touchOnDpad) return;
         var dx = e.changedTouches[0].clientX - touchStartX;
         var dy = e.changedTouches[0].clientY - touchStartY;
         var absDx = Math.abs(dx), absDy = Math.abs(dy);
-        if(absDx < 20 && absDy < 20){ restart(); return; }
+        if(absDx < 20 && absDy < 20) return; // tap court ignoré
         if(absDx > absDy) snakee.setDirection(dx > 0 ? "right" : "left");
         else              snakee.setDirection(dy > 0 ? "down" : "up");
     }, { passive: true });
