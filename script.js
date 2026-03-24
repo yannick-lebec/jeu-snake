@@ -116,9 +116,11 @@ window.onload = function(){
         ctx.fillText("Espace ou bouton Rejouer", cx, cy + blockSize * 1.6);
 
         ctx.restore();
+        document.getElementById('btn-restart').classList.add('visible');
     }
 
     function restart(){
+        document.getElementById('btn-restart').classList.remove('visible');
         snakee = new Snake([[6,4],[5,4],[4,4]], "right");
         applee = new Apple([10,10]);
         score = 0;
