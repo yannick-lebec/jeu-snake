@@ -298,14 +298,16 @@ window.onload = function(){
     document.getElementById('btn-right').addEventListener('click', function(){ snakee.setDirection("right"); });
 
     // --- Swipe tactile ---
-    var touchStartX = 0, touchStartY = 0;
+    var touchStartX = 0, touchStartY = 0, touchOnDpad = false;
 
     document.addEventListener('touchstart', function(e){
+        touchOnDpad = !!e.target.closest('#dpad');
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
     }, { passive: true });
 
     document.addEventListener('touchend', function(e){
+        if(touchOnDpad) return; // ignorer les touches sur le d-pad
         var dx = e.changedTouches[0].clientX - touchStartX;
         var dy = e.changedTouches[0].clientY - touchStartY;
         var absDx = Math.abs(dx), absDy = Math.abs(dy);
