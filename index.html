@@ -1,10 +1,79 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Jeu du Serpent</title>
-        
+        <title>🐍 Snake</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+            * { box-sizing: border-box; margin: 0; padding: 0; }
+
+            body {
+                background: #0f0f1a;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                touch-action: none;
+                font-family: 'Orbitron', sans-serif;
+            }
+
+            #game-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            #canvas-wrapper canvas {
+                border-radius: 12px;
+                box-shadow: 0 0 40px rgba(74, 222, 128, 0.3), 0 0 80px rgba(74, 222, 128, 0.1);
+            }
+
+            #dpad {
+                display: grid;
+                grid-template-columns: repeat(3, 64px);
+                grid-template-rows: repeat(3, 64px);
+                gap: 6px;
+            }
+
+            #dpad button {
+                background: rgba(74, 222, 128, 0.1);
+                border: 2px solid rgba(74, 222, 128, 0.4);
+                border-radius: 14px;
+                color: #4ade80;
+                font-size: 22px;
+                cursor: pointer;
+                touch-action: manipulation;
+                user-select: none;
+                -webkit-user-select: none;
+                transition: background 0.1s, transform 0.1s;
+            }
+
+            #dpad button:active {
+                background: rgba(74, 222, 128, 0.35);
+                transform: scale(0.92);
+            }
+
+            #dpad .empty { visibility: hidden; }
+        </style>
     </head>
     <body>
+        <div id="game-container">
+            <div id="canvas-wrapper"></div>
+            <div id="dpad">
+                <button class="empty"></button>
+                <button id="btn-up">▲</button>
+                <button class="empty"></button>
+                <button id="btn-left">◀</button>
+                <button class="empty"></button>
+                <button id="btn-right">▶</button>
+                <button class="empty"></button>
+                <button id="btn-down">▼</button>
+                <button class="empty"></button>
+            </div>
+        </div>
         <script src="script.js"></script>
     </body>
 </html>
