@@ -1,7 +1,7 @@
 window.onload = function(){
     var blockSize = 30;
     var ctx;
-    var delay = 100;
+    var delay = 150;
     var snakee;
     var applee;
     var score;
